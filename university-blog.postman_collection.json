@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "7b8c9d0e-1f2g-3h4i-5j6k-7l8m9n0o1p2q",
+		"name": "University Blog API",
+		"description": "API для университетского блога с поддержкой пользователей, публикаций и комментариев",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Управление Пользователями",
+			"description": "Эндпоинты для создания новых пользователей",
+			"item": [
+				{
+					"name": "Регистрация нового пользователя",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ivan_petrov\",\n    \"email\": \"ivan.petrov@example.com\",\n    \"password\": \"StrongP@ssw0rd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["users"]
+						},
+						"description": "Создает нового пользователя в системе"
+					}
+				},
+				{
+					"name": "Получение списка всех пользователей",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["users"]
+						},
+						"description": "Возвращает список всех зарегистрированных пользователей"
+					}
+				},
+				{
+					"name": "Получение информации о пользователе",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["users", "1"]
+						},
+						"description": "Возвращает детальную информацию о пользователе по его ID"
+					}
+				},
+				{
+					"name": "Обновление данных пользователя",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ivan_petrov_updated\",\n    \"email\": \"ivan.petrov.new@example.com\",\n    \"password\": \"NewStrongP@ssw0rd\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["users", "1"]
+						},
+						"description": "Обновляет информацию о пользователе"
+					}
+				},
+				{
+					"name": "Удаление пользователя",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["users", "1"]
+						},
+						"description": "Удаляет пользователя из системы"
+					}
+				}
+			]
+		},
+		{
+			"name": "Управление Публикациями",
+			"description": "Эндпоинты для создания, чтения, обновления и удаления публикаций",
+			"item": [
+				{
+					"name": "Создание новой публикации",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Новые технологии в образовании\",\n    \"content\": \"В этой статье мы рассмотрим, как современные технологии меняют подход к обучению в университетах...\",\n    \"author_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts"]
+						},
+						"description": "Создает новую публикацию в блоге"
+					}
+				},
+				{
+					"name": "Получение списка всех публикаций",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/posts",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts"]
+						},
+						"description": "Возвращает список всех публикаций в блоге"
+					}
+				},
+				{
+					"name": "Получение публикации по ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "1"]
+						},
+						"description": "Возвращает детальную информацию о публикации по её ID"
+					}
+				},
+				{
+					"name": "Получение публикаций по ID автора",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/posts/author/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "author", "1"]
+						},
+						"description": "Возвращает список всех публикаций, созданных указанным автором"
+					}
+				},
+				{
+					"name": "Обновление публикации",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Обновленные технологии в образовании\",\n    \"content\": \"В этой обновленной статье мы рассмотрим последние тенденции в образовательных технологиях...\",\n    \"author_id\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "1"]
+						},
+						"description": "Обновляет информацию о публикации"
+					}
+				},
+				{
+					"name": "Удаление публикации",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "1"]
+						},
+						"description": "Удаляет публикацию из блога"
+					}
+				}
+			]
+		},
+		{
+			"name": "Управление Комментариями",
+			"description": "Эндпоинты для создания, чтения, обновления и удаления комментариев",
+			"item": [
+				{
+					"name": "Добавление комментария к публикации",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Очень интересная статья\",\n    \"author_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts/1/comments",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "1", "comments"]
+						},
+						"description": "Создает новый комментарий к указанной публикации"
+					}
+				},
+				{
+					"name": "Получение комментария по ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["comments", "1"]
+						},
+						"description": "Возвращает информацию о комментарии по его ID"
+					}
+				},
+				{
+					"name": "Получение комментариев к публикации",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/posts/1/comments",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["posts", "1", "comments"]
+						},
+						"description": "Возвращает список всех комментариев к указанной публикации"
+					}
+				},
+				{
+					"name": "Обновление комментария",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Обновленный комментарий: действительно очень полезная информация\",\n    \"post_id\": 1,\n    \"author_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["comments", "1"]
+						},
+						"description": "Обновляет содержимое комментария"
+					}
+				},
+				{
+					"name": "Удаление комментария",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["comments", "1"]
+						},
+						"description": "Удаляет комментарий из системы"
+					}
+				}
+			]
+		}
+	]
+} 
